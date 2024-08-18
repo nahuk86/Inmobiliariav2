@@ -1,0 +1,6 @@
+C:\Users\nahue\source\repos\Inmobiliariav2\Domain\bin\Debug\Domain.dll
+C:\Users\nahue\source\repos\Inmobiliariav2\Domain\bin\Debug\Domain.pdb
+C:\Users\nahue\source\repos\Inmobiliariav2\Domain\obj\Debug\Domain.csproj.AssemblyReference.cache
+C:\Users\nahue\source\repos\Inmobiliariav2\Domain\obj\Debug\Domain.csproj.CoreCompileInputs.cache
+C:\Users\nahue\source\repos\Inmobiliariav2\Domain\obj\Debug\Domain.dll
+C:\Users\nahue\source\repos\Inmobiliariav2\Domain\obj\Debug\Domain.pdb
