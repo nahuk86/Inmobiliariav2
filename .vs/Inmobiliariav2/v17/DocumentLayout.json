@@ -3,6 +3,30 @@
   "WorkspaceRootPath": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6EDE33F4-7E45-4FF5-9194-4D6F2E20D101}|BLL\\BLL.csproj|C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\bll\\inmuebleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EDE33F4-7E45-4FF5-9194-4D6F2E20D101}|BLL\\BLL.csproj|solutionrelative:bll\\inmuebleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EDE33F4-7E45-4FF5-9194-4D6F2E20D101}|BLL\\BLL.csproj|c:\\users\\nahue\\source\\repos\\inmobiliariav2\\bll\\campofactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EDE33F4-7E45-4FF5-9194-4D6F2E20D101}|BLL\\BLL.csproj|solutionrelative:bll\\campofactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EDE33F4-7E45-4FF5-9194-4D6F2E20D101}|BLL\\BLL.csproj|c:\\users\\nahue\\source\\repos\\inmobiliariav2\\bll\\localfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EDE33F4-7E45-4FF5-9194-4D6F2E20D101}|BLL\\BLL.csproj|solutionrelative:bll\\localfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EDE33F4-7E45-4FF5-9194-4D6F2E20D101}|BLL\\BLL.csproj|c:\\users\\nahue\\source\\repos\\inmobiliariav2\\bll\\departamentofactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EDE33F4-7E45-4FF5-9194-4D6F2E20D101}|BLL\\BLL.csproj|solutionrelative:bll\\departamentofactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EDE33F4-7E45-4FF5-9194-4D6F2E20D101}|BLL\\BLL.csproj|c:\\users\\nahue\\source\\repos\\inmobiliariav2\\bll\\casafactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EDE33F4-7E45-4FF5-9194-4D6F2E20D101}|BLL\\BLL.csproj|solutionrelative:bll\\casafactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EDE33F4-7E45-4FF5-9194-4D6F2E20D101}|BLL\\BLL.csproj|c:\\users\\nahue\\source\\repos\\inmobiliariav2\\bll\\inmueblefactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EDE33F4-7E45-4FF5-9194-4D6F2E20D101}|BLL\\BLL.csproj|solutionrelative:bll\\inmueblefactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4BB32C5A-3624-44B7-9015-BD935CC3A19C}|UI\\UI.csproj|c:\\users\\nahue\\source\\repos\\inmobiliariav2\\ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4BB32C5A-3624-44B7-9015-BD935CC3A19C}|UI\\UI.csproj|solutionrelative:ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{ECF00EEA-301E-4F7E-BDF0-B86774F31AD6}|Domain\\Domain.csproj|C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\domain\\inmueble.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ECF00EEA-301E-4F7E-BDF0-B86774F31AD6}|Domain\\Domain.csproj|solutionrelative:domain\\inmueble.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EDE33F4-7E45-4FF5-9194-4D6F2E20D101}|BLL\\BLL.csproj|C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\bll\\inmuebleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EDE33F4-7E45-4FF5-9194-4D6F2E20D101}|BLL\\BLL.csproj|solutionrelative:bll\\inmuebleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6EDE33F4-7E45-4FF5-9194-4D6F2E20D101}|BLL\\BLL.csproj|C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\bll\\inmuebledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,11 +66,76 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CampoFactory.cs",
+              "DocumentMoniker": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\BLL\\CampoFactory.cs",
+              "RelativeDocumentMoniker": "BLL\\CampoFactory.cs",
+              "ToolTip": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\BLL\\CampoFactory.cs",
+              "RelativeToolTip": "BLL\\CampoFactory.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAAwBgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-19T00:17:11.98Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LocalFactory.cs",
+              "DocumentMoniker": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\BLL\\LocalFactory.cs",
+              "RelativeDocumentMoniker": "BLL\\LocalFactory.cs",
+              "ToolTip": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\BLL\\LocalFactory.cs",
+              "RelativeToolTip": "BLL\\LocalFactory.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAA4wBgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-19T00:16:33.152Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DepartamentoFactory.cs",
+              "DocumentMoniker": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\BLL\\DepartamentoFactory.cs",
+              "RelativeDocumentMoniker": "BLL\\DepartamentoFactory.cs",
+              "ToolTip": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\BLL\\DepartamentoFactory.cs",
+              "RelativeToolTip": "BLL\\DepartamentoFactory.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAmwBkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-19T00:15:54.578Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CasaFactory.cs",
+              "DocumentMoniker": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\BLL\\CasaFactory.cs",
+              "RelativeDocumentMoniker": "BLL\\CasaFactory.cs",
+              "ToolTip": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\BLL\\CasaFactory.cs",
+              "RelativeToolTip": "BLL\\CasaFactory.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAA6wBgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-19T00:15:23.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "InmuebleFactory.cs",
+              "DocumentMoniker": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\BLL\\InmuebleFactory.cs",
+              "RelativeDocumentMoniker": "BLL\\InmuebleFactory.cs",
+              "ToolTip": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\BLL\\InmuebleFactory.cs",
+              "RelativeToolTip": "BLL\\InmuebleFactory.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-19T00:14:50.593Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "Local.cs",
               "DocumentMoniker": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\Domain\\Local.cs",
               "RelativeDocumentMoniker": "Domain\\Local.cs",
@@ -62,7 +147,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "Departamento.cs",
               "DocumentMoniker": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\Domain\\Departamento.cs",
               "RelativeDocumentMoniker": "Domain\\Departamento.cs",
@@ -74,7 +159,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "Casa.cs",
               "DocumentMoniker": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\Domain\\Casa.cs",
               "RelativeDocumentMoniker": "Domain\\Casa.cs",
@@ -86,7 +171,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "InmuebleDto.cs",
               "DocumentMoniker": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\BLL\\InmuebleDto.cs",
               "RelativeDocumentMoniker": "BLL\\InmuebleDto.cs",
@@ -98,7 +183,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "Campo.cs",
               "DocumentMoniker": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\Domain\\Campo.cs",
               "RelativeDocumentMoniker": "Domain\\Campo.cs",
@@ -110,7 +195,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "Inmueble.cs",
               "DocumentMoniker": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\Domain\\Inmueble.cs",
               "RelativeDocumentMoniker": "Domain\\Inmueble.cs",
@@ -122,7 +207,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "InmuebleRepository.cs",
               "DocumentMoniker": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\DAL\\InmuebleRepository.cs",
               "RelativeDocumentMoniker": "DAL\\InmuebleRepository.cs",
@@ -134,25 +219,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "InmuebleService.cs",
               "DocumentMoniker": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\BLL\\InmuebleService.cs",
               "RelativeDocumentMoniker": "BLL\\InmuebleService.cs",
               "ToolTip": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\BLL\\InmuebleService.cs",
               "RelativeToolTip": "BLL\\InmuebleService.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAxwBgAAAAuAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAAQwEQAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-18T23:04:09.163Z"
+              "WhenOpened": "2024-08-18T23:04:09.163Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\UI\\Program.cs",
               "RelativeDocumentMoniker": "UI\\Program.cs",
               "ToolTip": "C:\\Users\\nahue\\source\\repos\\Inmobiliariav2\\UI\\Program.cs",
               "RelativeToolTip": "UI\\Program.cs",
-              "ViewState": "AQIAAKMAAAAAAAAAAAAiwLMAAAABAAAA",
+              "ViewState": "AQIAAI8AAAAAAAAAAAAcwLMAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-18T23:03:28.232Z",
               "EditorCaption": ""
