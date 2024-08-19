@@ -12,34 +12,169 @@ namespace UI
         static void Main(string[] args)
         {
             var service = new InmuebleService();
+            bool continuar = true;
 
-            // Creación de un nuevo Campo a través de la BLL
-            var detallesCampo = new Dictionary<string, object>
+            while (continuar)
             {
-                { "Hectareas", 50 },
-                { "Electricidad", true },
-                { "Forestada", false }
-            };
+                Console.Clear();
+                Console.WriteLine("Bienvenido al sistema de gestión inmobiliaria.");
+                Console.WriteLine("Por favor, selecciona el tipo de operación:");
+                Console.WriteLine("1. Vender un inmueble");
+                Console.WriteLine("2. Ver inmuebles vendidos");
+                Console.WriteLine("3. Salir");
+                Console.Write("Ingrese el número correspondiente: ");
+                string opcion = Console.ReadLine();
 
-            service.VenderInmueble("campo", "Rural", "Santa Fe", 1500000m, detallesCampo);
+                switch (opcion)
+                {
+                    case "1":
+                        VenderInmueble(service);
+                        break;
 
-            // Obtener y mostrar inmuebles vendidos
-            var vendidos = service.ObtenerInmueblesVendidos();
+                    case "2":
+                        VerInmueblesVendidos(service);
+                        break;
 
-            foreach (var inmuebleDto in vendidos)
+                    case "3":
+                        continuar = false;
+                        Console.WriteLine("Gracias por usar el sistema. ¡Hasta luego!");
+                        break;
+
+                    default:
+                        Console.WriteLine("Opción no válida. Intente nuevamente.");
+                        break;
+                }
+
+                if (continuar && opcion != "3")
+                {
+                    Console.WriteLine("\n¿Desea realizar otra operación? (S/N): ");
+                    string respuesta = Console.ReadLine().ToUpper();
+                    continuar = respuesta == "S";
+                }
+            }
+        }
+
+        static void VenderInmueble(InmuebleService service)
+        {
+            Console.Clear();
+            Console.WriteLine("Selecciona el tipo de inmueble que deseas vender:");
+            Console.WriteLine("1. Campo");
+            Console.WriteLine("2. Casa");
+            Console.WriteLine("3. Departamento");
+            Console.WriteLine("4. Local");
+            Console.Write("Ingrese el número correspondiente: ");
+            string opcion = Console.ReadLine();
+
+            string tipo = "";
+            switch (opcion)
             {
-                Console.WriteLine($"Tipo Propiedad: {inmuebleDto.TipoPropiedad}, " +
-                                  $"Ubicación: {inmuebleDto.Ubicacion}, " +
-                                  $"Fecha de Venta: {inmuebleDto.FechaVenta}");
-                Console.WriteLine($"Cálculo de Impuesto: {inmuebleDto.Impuesto}");
-                Console.WriteLine($"Cálculo de Boleto: {inmuebleDto.Boleto}");
-                Console.WriteLine($"Cálculo de Propiedad: {inmuebleDto.CostoTotal}");
-                Console.WriteLine();
+                case "1":
+                    tipo = "campo";
+                    break;
+                case "2":
+                    tipo = "casa";
+                    break;
+                case "3":
+                    tipo = "departamento";
+                    break;
+                case "4":
+                    tipo = "local";
+                    break;
+                default:
+                    Console.WriteLine("Opción no válida.");
+                    Console.WriteLine("Presiona cualquier tecla para continuar...");
+                    Console.ReadKey();
+                    return;
             }
 
+            Console.Write("Ingrese la ubicación: ");
+            string ubicacion = Console.ReadLine();
 
-            Console.WriteLine("Presiona Enter para salir...");
-            Console.ReadLine();
+            Console.Write("Ingrese la localidad: ");
+            string localidad = Console.ReadLine();
+
+            Console.Write("Ingrese el precio: ");
+            decimal precio;
+            while (!decimal.TryParse(Console.ReadLine(), out precio))
+            {
+                Console.WriteLine("Por favor, ingrese un valor numérico válido.");
+                Console.Write("Ingrese el precio: ");
+            }
+
+            var detalles = new Dictionary<string, object>();
+
+            switch (tipo)
+            {
+                case "campo":
+                    Console.Write("Ingrese las hectáreas: ");
+                    detalles["Hectareas"] = int.Parse(Console.ReadLine());
+
+                    Console.Write("¿Tiene electricidad? (true/false): ");
+                    detalles["Electricidad"] = bool.Parse(Console.ReadLine());
+
+                    Console.Write("¿Está forestada? (true/false): ");
+                    detalles["Forestada"] = bool.Parse(Console.ReadLine());
+                    break;
+
+                case "casa":
+                    Console.Write("Ingrese la cantidad de ambientes: ");
+                    detalles["CantidadAmbientes"] = int.Parse(Console.ReadLine());
+
+                    Console.Write("Ingrese la antigüedad (en años): ");
+                    detalles["Antigüedad"] = int.Parse(Console.ReadLine());
+                    break;
+
+                case "departamento":
+                    Console.Write("Ingrese la cantidad de ambientes: ");
+                    detalles["CantidadAmbientes"] = int.Parse(Console.ReadLine());
+
+                    Console.Write("Ingrese la antigüedad (en años): ");
+                    detalles["Antigüedad"] = int.Parse(Console.ReadLine());
+
+                    Console.Write("Ingrese el número de departamentos por piso: ");
+                    detalles["DepartamentosPorPiso"] = int.Parse(Console.ReadLine());
+                    break;
+
+                case "local":
+                    Console.Write("Ingrese la superficie total (en metros cuadrados): ");
+                    detalles["SuperficieTotal"] = decimal.Parse(Console.ReadLine());
+
+                    Console.Write("Ingrese la superficie cubierta (en metros cuadrados): ");
+                    detalles["SuperficieCubierta"] = decimal.Parse(Console.ReadLine());
+                    break;
+            }
+
+            service.VenderInmueble(tipo, ubicacion, localidad, precio, detalles);
+
+            Console.WriteLine("\nInmueble vendido exitosamente.");
+            VerInmueblesVendidos(service);
+        }
+
+        static void VerInmueblesVendidos(InmuebleService service)
+        {
+            Console.WriteLine("Inmuebles vendidos:");
+            var vendidos = service.ObtenerInmueblesVendidos();
+
+            if (vendidos.Count == 0)
+            {
+                Console.WriteLine("No hay inmuebles vendidos.");
+            }
+            else
+            {
+                foreach (var inmuebleDto in vendidos)
+                {
+                    Console.WriteLine($"Tipo de Propiedad: {inmuebleDto.TipoPropiedad}");
+                    Console.WriteLine($"Ubicación: {inmuebleDto.Ubicacion}");
+                    Console.WriteLine($"Fecha de Venta: {inmuebleDto.FechaVenta}");
+                    Console.WriteLine($"Cálculo de Impuesto: {inmuebleDto.Impuesto:C}");
+                    Console.WriteLine($"Cálculo de Boleto: {inmuebleDto.Boleto:C}");
+                    Console.WriteLine($"Cálculo de Propiedad: {inmuebleDto.CostoTotal:C}");
+                    Console.WriteLine();
+                }
+            }
+
+            Console.WriteLine("Presiona cualquier tecla para continuar...");
+            Console.ReadKey();
         }
     }
 }
