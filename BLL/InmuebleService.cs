@@ -20,55 +20,26 @@ namespace BLL
 
         public void VenderInmueble(string tipo, string ubicacion, string localidad, decimal precio, Dictionary<string, object> detalles)
         {
-            Inmueble inmueble = CrearInmueble(tipo, ubicacion, localidad, precio, detalles);
-            inmueble.FechaVenta = DateTime.Now;
+            InmuebleFactory factory = ObtenerFabrica(tipo);
+            Inmueble inmueble = factory.CrearInmueble(ubicacion, localidad, precio, detalles);
+            inmueble.FechaVenta = System.DateTime.Now;
             _repository.AgregarInmueble(inmueble);
         }
 
-        private Inmueble CrearInmueble(string tipo, string ubicacion, string localidad, decimal precio, Dictionary<string, object> detalles)
+        private InmuebleFactory ObtenerFabrica(string tipo)
         {
             switch (tipo.ToLower())
             {
                 case "campo":
-                    return new Campo
-                    {
-                        Ubicacion = ubicacion,
-                        Localidad = localidad,
-                        Precio = precio,
-                        Hectareas = (int)detalles["Hectareas"],
-                        Electricidad = (bool)detalles["Electricidad"],
-                        Forestada = (bool)detalles["Forestada"]
-                    };
+                    return new CampoFactory();
                 case "casa":
-                    return new Casa
-                    {
-                        Ubicacion = ubicacion,
-                        Localidad = localidad,
-                        Precio = precio,
-                        CantidadAmbientes = (int)detalles["CantidadAmbientes"],
-                        Antigüedad = (int)detalles["Antigüedad"]
-                    };
+                    return new CasaFactory();
                 case "departamento":
-                    return new Departamento
-                    {
-                        Ubicacion = ubicacion,
-                        Localidad = localidad,
-                        Precio = precio,
-                        CantidadAmbientes = (int)detalles["CantidadAmbientes"],
-                        Antigüedad = (int)detalles["Antigüedad"],
-                        DepartamentosPorPiso = (int)detalles["DepartamentosPorPiso"]
-                    };
+                    return new DepartamentoFactory();
                 case "local":
-                    return new Local
-                    {
-                        Ubicacion = ubicacion,
-                        Localidad = localidad,
-                        Precio = precio,
-                        SuperficieTotal = (decimal)detalles["SuperficieTotal"],
-                        SuperficieCubierta = (decimal)detalles["SuperficieCubierta"]
-                    };
+                    return new LocalFactory();
                 default:
-                    throw new ArgumentException("Tipo de inmueble no reconocido");
+                    throw new System.ArgumentException("Tipo de inmueble no reconocido");
             }
         }
 

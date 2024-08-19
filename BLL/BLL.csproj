@@ -41,8 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CampoFactory.cs" />
+    <Compile Include="CasaFactory.cs" />
+    <Compile Include="DepartamentoFactory.cs" />
     <Compile Include="InmuebleDto.cs" />
+    <Compile Include="InmuebleFactory.cs" />
     <Compile Include="InmuebleService.cs" />
+    <Compile Include="LocalFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
