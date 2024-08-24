@@ -1,136 +1,146 @@
-En la solución que hemos ido desarrollando, se han utilizado algunos patrones de diseño clave que permiten mantener una arquitectura en capas bien organizada, flexible y mantenible. A continuación, detallo los patrones de diseño utilizados y por qué son apropiados en este contexto:
+### Documentación del Proyecto Inmobiliario
 
-### 1. **Patrón DTO (Data Transfer Object)**
-   - **Uso:** El patrón DTO fue implementado en la capa **BLL** para transferir datos entre la capa de lógica de negocio y la UI. El `InmuebleDto` es un objeto que encapsula la información necesaria para ser mostrada en la UI, sin exponer las entidades de dominio directamente.
-   
-   **Motivo:**
-   - **Separación de responsabilidades:** Al usar un DTO, evitamos que la UI tenga acceso directo a las entidades del dominio (`Domain`). De esta manera, la UI solo recibe los datos que necesita sin acceder ni modificar directamente las entidades del negocio.
-   - **Simplicidad y seguridad:** El DTO asegura que solo los datos relevantes son enviados a la capa de presentación, manteniendo las entidades de dominio encapsuladas en la lógica de negocio y evitando filtraciones innecesarias de lógica de dominio a la UI.
+#### Descripción General
+Este proyecto es una aplicación de consola desarrollada en C# que simula la gestión de una inmobiliaria, permitiendo la venta de diversos tipos de inmuebles (Casa, Departamento, Local y Campo). La aplicación utiliza una arquitectura en capas y varios patrones de diseño para asegurar un código modular, mantenible y extensible.
 
-   **Ventaja:** Facilita la separación entre la lógica de negocio y la presentación, lo que ayuda a mantener el código más limpio y a reducir el acoplamiento entre capas.
+#### Estructura del Proyecto
 
-   **Código del DTO:**
+El proyecto está dividido en cuatro capas principales:
+
+1. **Domain**: Contiene las entidades del negocio (Casa, Departamento, Local, Campo) y los visitantes (patrón Visitor) que realizan operaciones sobre estas entidades.
+2. **BLL (Business Logic Layer)**: Maneja la lógica de negocio a través de la clase `InmuebleService` y utiliza el patrón Factory para la creación de inmuebles y el patrón Visitor para realizar cálculos.
+3. **DAL (Data Access Layer)**: Gestiona el acceso a los datos, simulando un repositorio en memoria a través de la clase `InmuebleRepository`.
+4. **UI (User Interface)**: Interactúa con el usuario a través de la consola, permite la venta de inmuebles y muestra la información relacionada con los inmuebles vendidos.
+
+### Patrones de Diseño Utilizados
+
+1. **Patrón Factory**
+   - **Descripción**: Se utiliza el patrón Factory para encapsular la creación de los diferentes tipos de inmuebles (`Casa`, `Departamento`, `Local`, `Campo`). Esto permite que la lógica de creación esté centralizada en una fábrica específica, lo que facilita la adición de nuevos tipos de inmuebles en el futuro.
+   - **Implementación**:
+     - Clases involucradas: `InmuebleFactory`, `CasaFactory`, `DepartamentoFactory`, `LocalFactory`, `CampoFactory`.
+     - La clase `InmuebleService` utiliza las fábricas para crear instancias de inmuebles basadas en el tipo seleccionado por el usuario.
+
    ```csharp
-   public class InmuebleDto
+   public abstract class InmuebleFactory
    {
-       public string TipoPropiedad { get; set; }
-       public string Ubicacion { get; set; }
-       public string Localidad { get; set; }
-       public decimal Precio { get; set; }
-       public DateTime FechaVenta { get; set; }
-       public decimal Impuesto { get; set; }
-       public decimal Boleto { get; set; }
-       public decimal CostoTotal { get; set; }
+       public abstract Inmueble CrearInmueble(string ubicacion, string localidad, decimal precio, Dictionary<string, object> detalles);
    }
    ```
 
-### 2. **Patrón Factory Method (Método de fábrica)**
-   - **Uso:** Aunque no se implementó directamente una clase `Factory`, utilizamos un método `CrearInmueble` dentro del servicio en la BLL para construir los diferentes tipos de `Inmueble` (como `Casa`, `Campo`, `Departamento`, etc.), basado en el tipo de propiedad pasado como argumento.
+2. **Patrón Visitor**
+   - **Descripción**: El patrón Visitor permite definir nuevas operaciones sobre los objetos sin cambiar sus clases. En este proyecto, se utiliza para realizar cálculos específicos sobre los inmuebles, como el cálculo de impuestos, boleto y costo total.
+   - **Implementación**:
+     - Interfaz `IVisitor` define las operaciones que pueden realizarse sobre los inmuebles.
+     - Clases de visitantes: `CalculoImpuestoVisitor`, `CalculoBoletoVisitor`, `CalculoCostoTotalVisitor` implementan estas operaciones.
+     - Las clases `Casa`, `Departamento`, `Local`, `Campo` implementan el método `Aceptar` que acepta un visitante y permite que la operación se ejecute en la instancia del inmueble.
 
-   **Motivo:**
-   - **Flexibilidad en la creación de objetos:** Usamos el patrón Factory Method dentro de la BLL para encapsular la lógica de creación de los diferentes tipos de inmuebles. Esto permite que la UI no necesite conocer los detalles de cómo crear un `Inmueble`, simplificando su responsabilidad.
-   - **Polimorfismo:** El método `CrearInmueble` se encarga de devolver un tipo específico de inmueble (`Casa`, `Departamento`, `Local`), pero desde la perspectiva de la lógica de negocio, trabajamos con el tipo base `Inmueble`, aprovechando el polimorfismo.
-
-   **Ventaja:** Mantiene la lógica de creación encapsulada en un solo lugar, lo que facilita la adición de nuevos tipos de inmuebles sin tener que modificar la UI o la lógica en varias partes.
-
-   **Código de Factory Method:**
    ```csharp
-   private Inmueble CrearInmueble(string tipo, string ubicacion, string localidad, decimal precio, Dictionary<string, object> detalles)
+   public interface IVisitor
    {
-       switch (tipo.ToLower())
+       void Visit(Campo campo);
+       void Visit(Casa casa);
+       void Visit(Departamento departamento);
+       void Visit(Local local);
+   }
+   ```
+
+   ```csharp
+   public class CalculoImpuestoVisitor : IVisitor
+   {
+       public decimal Importe { get; private set; }
+
+       public void Visit(Campo campo)
        {
-           case "campo":
-               return new Campo
-               {
-                   Ubicacion = ubicacion,
-                   Localidad = localidad,
-                   Precio = precio,
-                   Hectareas = (int)detalles["Hectareas"],
-                   Electricidad = (bool)detalles["Electricidad"],
-                   Forestada = (bool)detalles["Forestada"]
-               };
-           case "casa":
-               return new Casa
-               {
-                   Ubicacion = ubicacion,
-                   Localidad = localidad,
-                   Precio = precio,
-                   CantidadAmbientes = (int)detalles["CantidadAmbientes"],
-                   Antigüedad = (int)detalles["Antigüedad"]
-               };
-           case "departamento":
-               return new Departamento
-               {
-                   Ubicacion = ubicacion,
-                   Localidad = localidad,
-                   Precio = precio,
-                   CantidadAmbientes = (int)detalles["CantidadAmbientes"],
-                   Antigüedad = (int)detalles["Antigüedad"],
-                   DepartamentosPorPiso = (int)detalles["DepartamentosPorPiso"]
-               };
-           case "local":
-               return new Local
-               {
-                   Ubicacion = ubicacion,
-                   Localidad = localidad,
-                   Precio = precio,
-                   SuperficieTotal = (decimal)detalles["SuperficieTotal"],
-                   SuperficieCubierta = (decimal)detalles["SuperficieCubierta"]
-               };
-           default:
-               throw new ArgumentException("Tipo de inmueble no reconocido");
+           Importe = campo.Precio * 0.10m;
+       }
+
+       public void Visit(Casa casa)
+       {
+           Importe = casa.Precio * 0.05m;
+       }
+
+       public void Visit(Departamento departamento)
+       {
+           Importe = departamento.Precio * 0.01m;
+       }
+
+       public void Visit(Local local)
+       {
+           Importe = local.Precio * 0.12m;
        }
    }
    ```
 
-### 3. **Patrón Repository (Repositorio)**
-   - **Uso:** El patrón repositorio fue implementado en la capa **DAL** mediante la clase `InmuebleRepository`, que se encarga de gestionar el acceso a los datos, como almacenar y recuperar los inmuebles vendidos.
+3. **Patrón Repository**
+   - **Descripción**: El patrón Repository se utiliza en la capa DAL para gestionar el acceso a los datos de los inmuebles. El repositorio actúa como un intermediario entre la capa de lógica de negocio y la fuente de datos.
+   - **Implementación**:
+     - Clase `InmuebleRepository` simula un almacenamiento en memoria para los inmuebles vendidos.
+     - La lógica de negocio no interactúa directamente con la fuente de datos, sino a través del repositorio.
 
-   **Motivo:**
-   - **Abstracción del acceso a los datos:** El patrón repositorio permite encapsular todas las operaciones relacionadas con la persistencia de datos en un único lugar. De esta manera, el código que maneja la lógica de negocio no necesita preocuparse por cómo los datos son almacenados o recuperados.
-   - **Fácil mantenimiento y extensión:** Si decides cambiar la fuente de datos (por ejemplo, de una lista en memoria a una base de datos), solo necesitarás modificar el repositorio sin afectar el resto del sistema.
-
-   **Ventaja:** Facilita el mantenimiento y la escalabilidad del sistema, ya que el acceso a los datos está centralizado y desacoplado de la lógica de negocio.
-
-   **Código del Repositorio:**
    ```csharp
-   using Inmobiliaria.Domain;
-   using System.Collections.Generic;
-
-   namespace Inmobiliaria.DAL
+   public class InmuebleRepository
    {
-       public class InmuebleRepository
+       private List<Inmueble> _inmuebles = new List<Inmueble>();
+
+       public void AgregarInmueble(Inmueble inmueble)
        {
-           private List<Inmueble> _inmuebles = new List<Inmueble>();
+           _inmuebles.Add(inmueble);
+       }
 
-           public void AgregarInmueble(Inmueble inmueble)
-           {
-               _inmuebles.Add(inmueble);
-           }
-
-           public List<Inmueble> ObtenerTodos()
-           {
-               return _inmuebles;
-           }
+       public List<Inmueble> ObtenerTodos()
+       {
+           return _inmuebles;
        }
    }
    ```
 
-### 4. **Patrón de Capas (Layered Architecture)**
-   - **Uso:** La solución se organiza en capas separadas (Domain, BLL, DAL, y UI), con cada capa cumpliendo una función específica.
+### Clases Principales
 
-   **Motivo:**
-   - **Separación de responsabilidades:** Cada capa tiene una responsabilidad clara: la **UI** maneja la entrada y salida de datos, la **BLL** contiene la lógica de negocio, el **DAL** se encarga del acceso a los datos, y el **Domain** contiene las entidades del negocio.
-   - **Reducción del acoplamiento:** Cada capa solo interactúa con la capa inmediatamente adyacente, lo que facilita la mantenibilidad del sistema. Si hay cambios en una capa, las otras no se ven afectadas.
+#### 1. **Clases en la Capa Domain**
 
-   **Ventaja:** Esta organización modular permite una alta cohesión dentro de cada capa y un bajo acoplamiento entre ellas, lo que hace el sistema más flexible y fácil de mantener.
+- **Inmueble (abstracta)**
+  - Propiedades: `Ubicacion`, `Localidad`, `Precio`, `FechaVenta`.
+  - Método abstracto: `Aceptar(IVisitor visitor)`.
 
----
+- **Casa, Departamento, Local, Campo**
+  - Extienden `Inmueble`.
+  - Implementan el método `Aceptar` para aceptar un visitante.
 
-### Resumen:
-- **DTO (Data Transfer Object):** Usado para transferir datos entre capas de forma eficiente y segura, evitando que la UI interactúe directamente con las entidades de dominio.
-- **Factory Method:** Usado para crear instancias de diferentes tipos de inmuebles en función de los datos recibidos, encapsulando la lógica de creación.
-- **Repository (Repositorio):** Implementado para abstraer el acceso a los datos y centralizar las operaciones relacionadas con el almacenamiento y recuperación de inmuebles.
-- **Patrón de Capas:** Implementado para asegurar una correcta separación de responsabilidades y un bajo acoplamiento entre las diferentes partes del sistema.
+#### 2. **Clases en la Capa BLL**
 
-Estos patrones permiten que el sistema sea más mantenible, extensible y fácil de entender, cumpliendo con los principios de diseño de software como la separación de responsabilidades y el principio de inversión de dependencias.
+- **InmuebleService**
+  - Maneja la lógica de negocio para la venta de inmuebles.
+  - Utiliza `InmuebleFactory` para crear instancias de inmuebles.
+  - Utiliza visitantes (`CalculoImpuestoVisitor`, `CalculoBoletoVisitor`, `CalculoCostoTotalVisitor`) para calcular impuestos, boletos, y costos totales.
+
+- **InmuebleFactory y sus subclases (CasaFactory, DepartamentoFactory, LocalFactory, CampoFactory)**
+  - Encapsulan la lógica de creación de inmuebles.
+
+- **Visitantes (CalculoImpuestoVisitor, CalculoBoletoVisitor, CalculoCostoTotalVisitor)**
+  - Realizan operaciones específicas sobre los inmuebles.
+
+#### 3. **Clases en la Capa DAL**
+
+- **InmuebleRepository**
+  - Simula un repositorio en memoria para el almacenamiento y la recuperación de inmuebles vendidos.
+
+#### 4. **Clases en la Capa UI**
+
+- **Program**
+  - Interactúa con el usuario a través de la consola.
+  - Permite la venta de inmuebles y la visualización de inmuebles vendidos.
+  - Muestra detalles como el tipo de propiedad, ubicación, fecha de venta, cálculo de impuestos, boleto, y costo total.
+
+### Ejemplo de Uso
+
+1. **Vender un Inmueble:**
+   - El usuario selecciona el tipo de inmueble que desea vender.
+   - Se le solicitan detalles específicos del inmueble.
+   - El inmueble se vende, y se calculan y muestran los detalles de la venta.
+
+2. **Ver Inmuebles Vendidos:**
+   - El usuario puede ver una lista de todos los inmuebles vendidos, junto con los cálculos de impuestos, boletos y costos totales.
+
+### Conclusión
+
+Este proyecto demuestra una implementación robusta de patrones de diseño en un contexto de gestión inmobiliaria. El uso de Factory, Visitor y Repository asegura un código organizado, flexible y fácil de mantener, que puede adaptarse fácilmente a cambios futuros o nuevas funcionalidades.
