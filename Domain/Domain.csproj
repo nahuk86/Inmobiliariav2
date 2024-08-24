@@ -41,10 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculoBoletoVisitor.cs" />
+    <Compile Include="CalculoCostoTotalVisitor.cs" />
+    <Compile Include="CalculoImpuestoVisitor.cs" />
     <Compile Include="Campo.cs" />
     <Compile Include="Casa.cs" />
     <Compile Include="Departamento.cs" />
     <Compile Include="Inmueble.cs" />
+    <Compile Include="IVisitor.cs" />
     <Compile Include="Local.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -12,19 +12,9 @@ namespace Domain
         public bool Electricidad { get; set; }
         public bool Forestada { get; set; }
 
-        public override decimal CalcularImpuesto()
+        public override void Aceptar(IVisitor visitor)
         {
-            return Precio * 0.10m;
-        }
-
-        public override decimal CalcularBoleto()
-        {
-            return Precio * 0.10m;
-        }
-
-        public override decimal CalcularCostoTotal()
-        {
-            return Precio + CalcularBoleto() + CalcularImpuesto();
+            visitor.Visit(this);
         }
     }
 }

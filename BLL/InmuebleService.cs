@@ -50,6 +50,15 @@ namespace BLL
 
             foreach (var inmueble in inmuebles)
             {
+                var impuestoVisitor = new CalculoImpuestoVisitor();
+                inmueble.Aceptar(impuestoVisitor);
+
+                var boletoVisitor = new CalculoBoletoVisitor();
+                inmueble.Aceptar(boletoVisitor);
+
+                var costoTotalVisitor = new CalculoCostoTotalVisitor();
+                inmueble.Aceptar(costoTotalVisitor);
+
                 inmueblesDto.Add(new InmuebleDto
                 {
                     TipoPropiedad = inmueble.GetType().Name,
@@ -57,9 +66,9 @@ namespace BLL
                     Localidad = inmueble.Localidad,
                     Precio = inmueble.Precio,
                     FechaVenta = inmueble.FechaVenta,
-                    Impuesto = inmueble.CalcularImpuesto(),
-                    Boleto = inmueble.CalcularBoleto(),
-                    CostoTotal = inmueble.CalcularCostoTotal()
+                    Impuesto = impuestoVisitor.Importe,
+                    Boleto = boletoVisitor.Importe,
+                    CostoTotal = costoTotalVisitor.Importe
                 });
             }
 

@@ -13,8 +13,7 @@ namespace Domain
         public decimal Precio { get; set; }
         public DateTime FechaVenta { get; set; }
 
-        public abstract decimal CalcularImpuesto();
-        public abstract decimal CalcularBoleto();
-        public abstract decimal CalcularCostoTotal();
+        public abstract void Aceptar(IVisitor visitor);
     }
 }
+

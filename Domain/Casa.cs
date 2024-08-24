@@ -11,19 +11,9 @@ namespace Domain
         public int CantidadAmbientes { get; set; }
         public int Antigüedad { get; set; }
 
-        public override decimal CalcularImpuesto()
+        public override void Aceptar(IVisitor visitor)
         {
-            return Precio * 0.05m;
-        }
-
-        public override decimal CalcularBoleto()
-        {
-            return Precio * 0.10m;
-        }
-
-        public override decimal CalcularCostoTotal()
-        {
-            return Precio + CalcularBoleto() + CalcularImpuesto();
+            visitor.Visit(this);
         }
     }
 }
